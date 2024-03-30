@@ -8,7 +8,7 @@ const userSlice = createSlice({
     reducers: {
         getUser : (state, action) => {
             state.users = action.payload.map(user => {
-                return {id: user._id, name: user.name, email: user.email, age: user.age}
+                return {id: user._id, name: user.name, licenseNumber: user.licenseNumber, age: user.age , dob: user.dob}
             })
         },
         addUser : (state, action) => {
@@ -19,8 +19,9 @@ const userSlice = createSlice({
             state.users[index] = {
                 id: action.payload.id,
                 name: action.payload.name,
-                email: action.payload.email,
+                licenseNumber: action.payload.licenseNumber,
                 age: action.payload.age,
+                dob: action.payload.dob,
             }
         },
         deleteUser: (state, action) => {

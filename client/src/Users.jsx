@@ -33,9 +33,9 @@ function Users() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>
+              <th>License Number</th>
               <th>Age</th>
-              <th>Action</th>
+              <th>DOB</th>
             </tr>
           </thead>
           <tbody>
@@ -43,11 +43,12 @@ function Users() {
               users.map(user => {
                 return <tr>
                   <td>{user.name}</td>
-                  <td>{user.email}</td>
+                  <td>{user.licenseNumber}</td>
                   <td>{user.age}</td>
+                  <td>{user.dob}</td>
                   <td>
-                    <Link to={`/edit/${user.id}`} className="btn btn-sm btn-success me-2">Update</Link>
-                    <button onClick={() => handleDelete(user.id)} className="btn btn-sm btn-danger">Delete</button>
+                    <Link to={`/edit/${user.id}`} className="btn btn-sm btn-success me-2">Edit</Link>
+                    <button onClick={() => handleDelete(user.id)} className="btn btn-sm btn-danger">Del</button>
                   </td>
                 </tr>
               })

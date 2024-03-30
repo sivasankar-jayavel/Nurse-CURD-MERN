@@ -6,18 +6,19 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function UpdateUser() {
     const {id} = useParams()
-   
     const [name, setName] = useState()
-    const [email, setEmail] = useState()
+    const [licenseNumber, setlicenseNumber] = useState()
     const [age, setAge] = useState()
+    const [dob, setDob] = useState()
     
     const users = useSelector(state => state.users.users)
     
     useEffect(()=> {
         const user = users.find(u => u.id === id)
         setName(user.name)
-        setEmail(user.email)
+        setlicenseNumber(user.licenseNumber)
         setAge(user.age)
+        setDob(user.dob)
     }, [])
 
     const dispatch = useDispatch()
@@ -27,7 +28,7 @@ function UpdateUser() {
         e.preventDefault()
         axios.put('http://localhost:3001/update/'+id, {name, email, age})
         .then(res => {
-            dispatch(updateUser({id, name, email, age}))
+            dispatch(updateUser({id, name, licenseNumber, age ,dob}))
             navigate('/')
         })
         .catch(err => console.log(err))
@@ -49,10 +50,10 @@ function UpdateUser() {
             />
           </div>
           <div className="mb-2">
-            <label htmlFor="">Email</label>
+            <label htmlFor="">License Number</label>
             <input
-              type="email"
-              placeholder="Enter Email"
+              type="license number"
+              placeholder="Enter License Number"
               className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -66,6 +67,16 @@ function UpdateUser() {
               className="form-control"
               value={age}
               onChange={(e) => setAge(e.target.value)}
+            />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="">Dob</label>
+            <input
+              type="text"
+              placeholder="Enter Dob"
+              className="form-control"
+              value={age}
+              onChange={(e) => setDob(e.target.value)}
             />
           </div>
           <button className="btn btn-success">Update</button>

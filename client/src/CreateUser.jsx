@@ -7,15 +7,16 @@ import { useNavigate } from "react-router-dom";
 function CreateUser() {
 
     const [name, setName] = useState()
-    const [email, setEmail] = useState()
+    const [licenseNumber, setlicenseNumber] = useState()
     const [age, setAge] = useState()
+    const [dob, setDob] = useState()
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:3001/create', {name, email, age})
+        axios.post('http://localhost:3001/create', {name, licenseNumber, age,dob})
         .then(res => {
             dispatch(addUser(res.data))
             navigate('/')
@@ -38,15 +39,15 @@ function CreateUser() {
             />
           </div>
           <div className="mb-2">
-            <label htmlFor="">Email</label>
+            <label htmlFor="">License Number</label>
             <input
               type="email"
-              placeholder="Enter Email"
+              placeholder="Enter License Number"
               className="form-control"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setlicenseNumber(e.target.value)}
             />
           </div>
-          <div className="mb-2">
+         <div className="mb-2">
             <label htmlFor="">Age</label>
             <input
               type="text"
@@ -54,7 +55,16 @@ function CreateUser() {
               className="form-control"
               onChange={(e) => setAge(e.target.value)}
             />
-          </div>
+          </div> 
+         <div className="mb-2">
+            <label htmlFor="">DOB</label>
+            <input
+              type="text"
+              placeholder="Enter DOB"
+              className="form-control"
+              onChange={(e) => setDob(e.target.value)}
+            />
+          </div> 
           <button className="btn btn-success">Submit</button>
         </form>
       </div>
