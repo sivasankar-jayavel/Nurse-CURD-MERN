@@ -41,7 +41,7 @@ function CreateUser() {
           <div className="mb-2">
             <label htmlFor="">License Number</label>
             <input
-              type="email"
+              type="number"
               placeholder="Enter License Number"
               className="form-control"
               onChange={(e) => setlicenseNumber(e.target.value)}

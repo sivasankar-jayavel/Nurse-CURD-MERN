@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteUser } from "./redux/userSlice";
-
+import '@fortawesome/fontawesome-free';
 
 function Users() {
 
@@ -19,16 +19,14 @@ function Users() {
 
   return (
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
-      <div className="w-50 bg-white rounded p-3">
-        <Link to="/create" className="btn btn-success btn-sm">
+      <div className="w-50 bg-white rounded p-4">
+        <Link to="/create" className="btn btn-success btn-sm me-2">
           Add +
         </Link>
-        <button onClick={()=>handleDelete(users.id)} className="btn btn-success btn-sm">
-          Download XLSX
-        </button>
-        <button onClick={ () => handleDelete(users.id)} className="btn btn-success btn-sm">
-          Download CSV
-        </button>
+        <a href="/download/csv" className="btn btn-primary btn-sm me-2">Download
+          CSV</a>
+        <a href="/download/excel" className="btn btn-primary btn-sm me-2">Download
+          Excel</a>
         <table className="table">
           <thead>
             <tr>
@@ -36,6 +34,7 @@ function Users() {
               <th>License Number</th>
               <th>Age</th>
               <th>DOB</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -47,7 +46,7 @@ function Users() {
                   <td>{user.age}</td>
                   <td>{user.dob}</td>
                   <td>
-                    <Link to={`/edit/${user.id}`} className="btn btn-sm btn-success me-2">Edit</Link>
+                    <Link to={`/edit/:id`} className="btn btn-sm btn-success me-2">Edit</Link>
                     <button onClick={() => handleDelete(user.id)} className="btn btn-sm btn-danger">Del</button>
                   </td>
                 </tr>
